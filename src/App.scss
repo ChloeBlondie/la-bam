@@ -1,0 +1,41 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #292930;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #FDFFFC;
+
+  .title-label {
+    color: #FDFFFC;
+  }
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.button.success {
+  background-color: #3DE03D !important;
+  border-radius: 4px;
+}
+
+.help-text {
+  color: rgba(255, 255, 255, 0.200) !important;
+}
+
+.select {
+  border-radius: 4px;
+}
+
+
