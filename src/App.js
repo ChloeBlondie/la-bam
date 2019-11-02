@@ -1,36 +1,38 @@
 import React from 'react';
-import './App.css';
-import { 
-  sonorityOptions,
-  // sizeOptions,
-  // originalityOptions,
-  // languageOptions
-} from './constants.js';
-import map from 'lodash/map';
+import './App.scss';
+import Sonority from './Sonority';
+import { Provider, Context } from './config/state.manager';
+import Word from './Word';
 
 const App = () => {
+  const { state } = React.useContext(Context);
+  console.log('state', state);
+  // const { word } = 'cucu'; // state;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* <div class="container"> */}
-        <form>
-          <div class="form-group">
-
-            <div class="form-group">
-              <label for="sonority">Sonorité</label>
-              <select class="form-control" id="sonority">
-                {map(sonorityOptions, option => <option key={option.value}>{option.label}</option>)}
-              </select>
-              <small id="sonorityHelp" class="form-text text-muted">Choisis une sonorité</small>
+    <Provider>
+      <div className="App">
+        <header className="App-header">
+          <form>
+            <div className="grid-y">
+              <div className="cell small-12">
+                <Word />
+              </div>
+              <div className="cell small-12">
+                <Sonority />
+              </div>
+              <div className="cell small-12">
+                <Sonority />
+              </div>
+              <div className="cell small-12">
+                <button type="button" className="success button">Générer</button>
+              </div>
             </div>
-
-            <button type="submit" class="btn btn-primary">Générer</button>
-          </div>
-
-        </form>
-      </header>
-    </div>
+          </form>
+        </header>
+      </div>
+    </Provider>
   );
-}
+};
 
 export default App;
