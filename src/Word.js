@@ -1,17 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './App.scss';
-import { Context } from './config/state.manager';
+// import { Context } from './config/state.manager';
 
-const Word = () => {
-  const { state } = React.useContext(Context);
-  console.log('state', state);
-  const { word } = state;
-
+const Word = (props) => {
+  const { word } = props;
   return (
-    <>
+    <div className="word">
       {word}
-    </>
+    </div>
   );
+};
+
+Word.propTypes = {
+  word: PropTypes.string.isRequired,
 };
 
 export default Word;

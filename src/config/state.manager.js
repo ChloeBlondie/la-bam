@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 
 const initialState = {
   word: 'coucou',
+  dico: [],
 };
 
 const Context = React.createContext(initialState);
@@ -17,6 +18,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         word: action.word || state.word,
+      };
+    }
+    case 'setDico': {
+      return {
+        ...state,
+        dico: action.dico || state.dico,
       };
     }
     default:

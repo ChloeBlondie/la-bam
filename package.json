@@ -8,6 +8,7 @@
     "foundation-sites": "^6.5.3",
     "lodash": "^4.17.15",
     "node-sass": "^4.13.0",
+    "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-foundation": "^0.9.6",
