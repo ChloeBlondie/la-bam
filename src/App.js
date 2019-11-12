@@ -1,38 +1,17 @@
 import React from 'react';
 import './App.scss';
-import Sonority from './Sonority';
-import { Provider, Context } from './config/state.manager';
-import Word from './Word';
+import { Provider } from './config/state.manager';
+import Form from './Form';
 
-const App = () => {
-  const { state } = React.useContext(Context);
-  console.log('state', state);
-  // const { word } = 'cucu'; // state;
-
-  return (
-    <Provider>
-      <div className="App">
-        <header className="App-header">
-          <form>
-            <div className="grid-y">
-              <div className="cell small-12">
-                <Word />
-              </div>
-              <div className="cell small-12">
-                <Sonority />
-              </div>
-              <div className="cell small-12">
-                <Sonority />
-              </div>
-              <div className="cell small-12">
-                <button type="button" className="success button">Générer</button>
-              </div>
-            </div>
-          </form>
-        </header>
-      </div>
-    </Provider>
-  );
-};
+const App = () => (
+  <Provider>
+    <div className="App">
+      <div className="App-head">La boite à mots</div>
+      <header className="App-header">
+        <Form />
+      </header>
+    </div>
+  </Provider>
+);
 
 export default App;
