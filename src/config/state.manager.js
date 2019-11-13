@@ -1,13 +1,20 @@
 import React, { useReducer } from 'react';
 
 const initialState = {
-  word: 'coucou',
+  word: '...',
   dico: [],
+  parameters: {
+    sonority: 0, 
+    originality: 0, 
+    language: 0, 
+    length: 0
+  }
 };
 
 const Context = React.createContext(initialState);
 
 const reducer = (state, action) => {
+  // console.log(state, action)
   switch (action.type) {
     case 'init': {
       return {
@@ -26,6 +33,12 @@ const reducer = (state, action) => {
         dico: action.dico || state.dico,
       };
     }
+    case 'setParameters': {
+      return {
+        ...state,
+        parameters: action.parameters || state.parameters,
+      };
+    }
     default:
       return state;
   }
@@ -33,7 +46,7 @@ const reducer = (state, action) => {
 
 const Provider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log('Provider', state);
+  // console.log('Provider', state);
 
   return (
     <Context.Provider value={{ state, dispatch }}>

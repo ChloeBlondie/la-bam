@@ -1,62 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import indexOf from 'lodash/indexOf';
-// import max from 'lodash/max';
-// import find from 'lodash/find';
+import Generator from './generator.js';
+import { Context } from '../config/state.manager';
 
-// const filePath = 'mot.txt';
-// var generator = require('./generator.js');
+const wordGeneration = (parameters, dico) => {
+  // console.log("--parameters", parameters)
+  // console.log("--dico", dico)
+  const { sonority, length, originality, language } = parameters;
 
-// const readFile = () => {
-//   const xhttp = new XMLHttpRequest();
-//   xhttp.onreadystatechange = () => {
-//     if (this.readyState === 4 && this.status === 200) {
-//       this.words = this.responseText;
-//       this.words = this.words.split('\n');
-//     }
-//   };
-//   xhttp.open('GET', 'http://localhost:3000/fr.txt', true);
-//   xhttp.send();
-// };
+  // console.log('sonority', sonority);
+  // console.log('length', length);
+  // console.log('originality', originality);
+  // console.log('language', language);
 
-const wordGeneration = (props) => {
-  const {
-    sonorite,
-    longueur,
-    originalite,
-    language,
-    // current_dictionary,
-  } = props;
+  const generator = new Generator();
+  const alphabet = generator.getAlphabet();
+  // MATRICE DES PROBABILITES
+  const matrice = generator.generateMatrice3D(dico, alphabet); // this.afficherMatrice(matrice);
+  // TABLE SIMPLE GENERATION
+  const matriceSimple = generator.generateMatriceSimple3D(matrice, alphabet, originality);
 
-  React.useEffect(() => {
-    const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = () => {
-      if (this.readyState === 4 && this.status === 200) {
-        console.log('this', this);
-        // this.words = this.responseText;
-        // this.words = this.words.split('\n');
-      }
-    };
-    xhttp.open('GET', 'http://localhost:3000/fr.txt', true);
-    xhttp.send();
-  }, []);
+  // GENERATE
+  // for (var i=1; i<=40; i++) {
+  const wordLength = generator.getWordLength();
+  const newWordArray = generator.generation(wordLength, matriceSimple, alphabet, originality);
 
-  console.log('sonorite', sonorite);
-  console.log('longueur', longueur);
-  console.log('originalite', originalite);
-  console.log('language', language);
+  // DISPLAY
+  let newWord = '';
+  newWordArray.forEach((element) => { newWord += element; });
+  // console.log("mot", i, newWord);
+  // console.log(wordLength, "mot", i, word);
+  // }
 
-  const [word, setWord] = React.useState();
-
-  // this.current_dictionary = props.current_dictionary;
-  // this.generator = new generator();
+  return newWord;
 };
 
 wordGeneration.propTypes = {
-  sonorite: PropTypes.string,
-  longueur: PropTypes.string,
-  originalite: PropTypes.string,
-  language: PropTypes.string,
+  sonority: PropTypes.integer,
+  length: PropTypes.integer,
+  originality: PropTypes.integer,
+  language: PropTypes.integer,
   // current_dictionary: PropTypes.array,
 };
 
