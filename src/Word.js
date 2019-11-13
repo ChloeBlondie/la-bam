@@ -6,14 +6,15 @@ import './App.scss';
 const Word = (props) => {
   const { word } = props;
   return (
-    <div className="word">
-      {word}
-    </div>
+    <input className="word" value={word} readOnly />
   );
 };
 
 Word.propTypes = {
   word: PropTypes.string.isRequired,
+};
+Word.defaultProps = {
+  word: '...'
 };
 
 export default Word;
