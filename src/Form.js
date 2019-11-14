@@ -2,12 +2,13 @@ import React from 'react';
 import { Context } from './config/state.manager';
 import Word from './Word';
 import Parameter from './Parameter';
-import wordGeneration from './generation/wordGeneration';
+import generate from './generation/generate';
 import {
   sonorityOptions,
   sizeOptions,
   originalityOptions,
   languageOptions,
+  // dicoOptions
 } from './constants';
 
 const Form = () => {
@@ -21,13 +22,15 @@ const Form = () => {
 
   const onClick = () => {
     // console.log('onClick', parameters, dico.length)
-    const newWord = wordGeneration(parameters, dico);
+    const newWord = generate(parameters, dico);
     setWord(newWord);
   };
 
   React.useEffect(() => {
-    const readDictionary = () => {
-      fetch('dictionaries/francais.txt')
+    const language = languageOptions[parameters.language];
+    console.log("language", language)
+    const readDictionary = (path) => {
+      fetch(path)
         .then(response => {
           response.text().then(response => {
             response = response.split('\n');
@@ -36,8 +39,8 @@ const Form = () => {
           });
         });
     };
-    readDictionary();
-  }, []);
+    readDictionary(language.path);
+  }, [parameters.language]);
 
   return (
     <form>
