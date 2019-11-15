@@ -7,40 +7,49 @@ import {
   sonorityOptions,
   sizeOptions,
   originalityOptions,
-  languageOptions,
-  // dicoOptions
+  languageOptions
 } from './constants';
 
 const Form = () => {
   const { state, dispatch } = React.useContext(Context);
-  const { parameters, dico } = state;
+  const { parameters } = state;
   const [word, setWord] = React.useState();
-  // const [dico, setDico] = React.useState();
+  const [dictionary, setDictionary] = React.useState();
+  const languageOption = languageOptions[parameters.language];
   
-  // console.warn('dico', dico.length);
-  // console.warn('parameters', parameters);
-
+  const readDictionary = (option) => {
+    fetch(option.path).then(response => {
+        response.text().then(response => {
+          response = response.split('\n');
+          dispatch(
+            { 
+              type: option.function, 
+              [option.dictionary]: response 
+            }
+          );
+        });
+      });
+  };
   const onClick = () => {
-    // console.log('onClick', parameters, dico.length)
-    const newWord = generate(parameters, dico);
+    let newWord;
+    if (!dictionary || dictionary.length === 0) {
+      const language = languageOptions[parameters.language];
+      const defaultDictionary = state[language.dictionary];
+      newWord = generate(parameters, defaultDictionary);
+    }
+    else newWord = generate(parameters, dictionary);
     setWord(newWord);
   };
 
   React.useEffect(() => {
-    const language = languageOptions[parameters.language];
-    console.log("language", language)
-    const readDictionary = (path) => {
-      fetch(path)
-        .then(response => {
-          response.text().then(response => {
-            response = response.split('\n');
-            // setDico(dico);
-            dispatch({ type: 'setDico', dico: response });
-          });
-        });
-    };
-    readDictionary(language.path);
-  }, [parameters.language]);
+    languageOptions.forEach(
+      option => readDictionary(option)
+    );
+  }, []);
+
+  React.useEffect(() => {
+    setDictionary(state[languageOption.dictionary]);
+  }, [state[languageOption.dictionary]]);
 
   return (
     <form>

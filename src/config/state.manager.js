@@ -2,7 +2,11 @@ import React, { useReducer } from 'react';
 
 const initialState = {
   word: '...',
-  dico: [],
+  dictioFr: [],
+  dictioEn: [],
+  dictioDe: [],
+  dictioEs: [],
+  dictioIt: [],
   parameters: {
     sonority: 0, 
     originality: 0, 
@@ -27,10 +31,34 @@ const reducer = (state, action) => {
         word: action.word || state.word,
       };
     }
-    case 'setDico': {
+    case 'setDictioFr': {
       return {
         ...state,
-        dico: action.dico || state.dico,
+        dictioFr: action.dictioFr || state.dictioFr,
+      };
+    }
+    case 'setDictioEn': {
+      return {
+        ...state,
+        dictioEn: action.dictioEn || state.dictioEn,
+      };
+    }
+    case 'setDictioDe': {
+      return {
+        ...state,
+        dictioDe: action.dictioDe || state.dictioDe,
+      };
+    }
+    case 'setDictioEs': {
+      return {
+        ...state,
+        dictioEs: action.dictioEs || state.dictioEs,
+      };
+    }
+    case 'setDictioIt': {
+      return {
+        ...state,
+        dictioIt: action.dictioIt || state.dictioIt,
       };
     }
     case 'setParameters': {

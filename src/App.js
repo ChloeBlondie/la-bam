@@ -6,7 +6,7 @@ import Form from './Form';
 const App = () => (
   <Provider>
     <div className="App">
-      <div className="App-head">La boite à mots</div>
+      <div className="App-head">La boite à prénoms</div>
       <header className="App-header">
         <Form />
       </header>
