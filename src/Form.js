@@ -58,13 +58,13 @@ const Form = () => {
           <Word word={word} />
         </div>
         <div className="cell small-12">
-          <Parameter title="Sonority" options={sonorityOptions} name='sonority' />
+          <Parameter title="Sonorité" options={sonorityOptions} name='sonority' />
         </div>
         <div className="cell small-12">
-          <Parameter title="Length" options={sizeOptions} name='length' />
+          <Parameter title="Longueur" options={sizeOptions} name='length' />
         </div>
         <div className="cell small-12">
-          <Parameter title="Originality" options={originalityOptions} name='originality' />
+          <Parameter title="Originalité" options={originalityOptions} name='originality' />
         </div>
         <div className="cell small-12">
           <Parameter title="Language" options={languageOptions} name='language'/>

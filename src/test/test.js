@@ -1,26 +1,33 @@
-const mots = require('./fr.js');
+// cd ~/Documents/GitHub/la-bam/src/test
+// const mots = require('./fr.js');
 const prenom = require('./prenom.js');
 const { 
-  getRandomInt,
-  generateMatrice3D,
-  generateMatriceSimple3D,
-  generateWord
+  generateWord 
 } = require('../generation/tools.js');
+const {
+  isExistingWord
+} = require('../generation/helper.js');
+const { 
+  // generateMatriceSimple3D_v2,
+  generateMatriceSimple3D_v2: generateMatriceSimple3D 
+} = require('../generation/brain.js');
 
-let originality = 3;
-originality = getRandomInt(1,4);
-originality = 4;
+let matriceSimple3D;
+const length = 30;
 
-console.log("--ORIGINALITY--", originality)
-
-// const matrice = generateMatrice3D(mots);
-// afficherMatrice(matrice);
-
-const matriceSimple3D = generateMatriceSimple3D(prenom, originality);
-
-for (var i=1; i<=50; i++) {
-
-  const word = generateWord(matriceSimple3D, originality);
-  console.log("mot", i, word);
-	// console.log(wordLength, "mot", i, word);
+console.log(' ');
+console.log('--------ORGINAL 4---------');
+matriceSimple3D = generateMatriceSimple3D(prenom);
+for (let i=1; i<=length; i++) {
+  const word = generateWord(matriceSimple3D, 4);
+  console.log(word, isExistingWord(prenom, word) ? '------------------' : '');
 }
+
+console.log(' ');
+console.log('--------ORGINAL 1---------');
+matriceSimple3D = generateMatriceSimple3D(prenom);
+for (let i=1; i<=length; i++) {
+  const word = generateWord(matriceSimple3D, 1);
+  console.log(word, isExistingWord(prenom, word) ? '------------------' : '');
+}
+
