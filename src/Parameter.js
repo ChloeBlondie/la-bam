@@ -22,27 +22,20 @@ const Parameter = (props) => {
     );
   }
   return (
-    <>
-      <label className="title-label" htmlFor="sonority-label">
-        {title}
-        <select onChange={onClick} className="select" id="sonority-label">
-          { map(options, (option) => (
-            <option 
-              onClick={onClick} 
-              key={option.value} 
-              value={option.value}
-            >
-              {option.label}
-            </option>
-            ))}
-        </select>
-      </label>
-      {/* <p className="help-text" id="passwordHelpText">
-        Select a
-        {' '}
-        {title}
-      </p> */}
-    </>
+    <label className="title-label" htmlFor="sonority-label">
+      {title}
+      <select onChange={onClick} className="select" id="sonority-label">
+        { map(options, (option) => (
+          <option 
+            onClick={onClick} 
+            key={option.value} 
+            value={option.value}
+          >
+            {option.label}
+          </option>
+          ))}
+      </select>
+    </label>
   );
 };
 

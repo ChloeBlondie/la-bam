@@ -9,7 +9,7 @@ const initialState = {
   dictioIt: [],
   parameters: {
     sonority: 0, 
-    originality: 0, 
+    originality: 4, 
     language: 0, 
     length: 0
   }

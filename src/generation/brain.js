@@ -63,9 +63,7 @@ const generateMatriceSimple3D_v2 = (dictionary) => {
     const matriceSimple3d = [];
     const alphabet = getAlphabet();
      // MATRICE DES PROBABILITES
-    const { matrice, total: bigTotal, max } = generateMatrice3D(dictionary);
-    
-    console.log("------", bigTotal, max)
+    const { matrice, max } = generateMatrice3D(dictionary);
 
     for (let i = 0; i <= alphabet.length; i++) {
       const matriceSimple2d = [];
