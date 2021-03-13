@@ -18,9 +18,9 @@ export const originalityOptions = [
 ];
 
 export const languageOptions = [
-  { value: 0, label: 'Francais' },
-  { value: 1, label: 'Anglais' },
-  { value: 2, label: 'Allemand' },
-  { value: 3, label: 'Espagnol' },
-  { value: 4, label: 'Italien' },
+  { value: 0, dictionary: 'dictioFr', function: 'setDictioFr', label: 'Français', path: 'dictionaries/prenom.txt' },
+  { value: 1, dictionary: 'dictioEn', function: 'setDictioEn', label: 'Anglais', path: 'dictionaries/english.txt' },
+  { value: 2, dictionary: 'dictioDe', function: 'setDictioDe', label: 'Allemand', path: 'dictionaries/deutch.txt' },
+  { value: 3, dictionary: 'dictioEs', function: 'setDictioEs', label: 'Espagnol', path: 'dictionaries/espanol.txt' },
+  { value: 4, dictionary: 'dictioIt', function: 'setDictioIt', label: 'Italien', path: 'dictionaries/italiano.txt' }
 ];

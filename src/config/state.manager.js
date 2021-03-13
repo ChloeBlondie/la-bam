@@ -1,13 +1,24 @@
 import React, { useReducer } from 'react';
 
 const initialState = {
-  word: 'coucou',
-  dico: [],
+  word: '...',
+  dictioFr: [],
+  dictioEn: [],
+  dictioDe: [],
+  dictioEs: [],
+  dictioIt: [],
+  parameters: {
+    sonority: 0, 
+    originality: 0, 
+    language: 0, 
+    length: 0
+  }
 };
 
 const Context = React.createContext(initialState);
 
 const reducer = (state, action) => {
+  // console.log(state, action)
   switch (action.type) {
     case 'init': {
       return {
@@ -20,10 +31,40 @@ const reducer = (state, action) => {
         word: action.word || state.word,
       };
     }
-    case 'setDico': {
+    case 'setDictioFr': {
       return {
         ...state,
-        dico: action.dico || state.dico,
+        dictioFr: action.dictioFr || state.dictioFr,
+      };
+    }
+    case 'setDictioEn': {
+      return {
+        ...state,
+        dictioEn: action.dictioEn || state.dictioEn,
+      };
+    }
+    case 'setDictioDe': {
+      return {
+        ...state,
+        dictioDe: action.dictioDe || state.dictioDe,
+      };
+    }
+    case 'setDictioEs': {
+      return {
+        ...state,
+        dictioEs: action.dictioEs || state.dictioEs,
+      };
+    }
+    case 'setDictioIt': {
+      return {
+        ...state,
+        dictioIt: action.dictioIt || state.dictioIt,
+      };
+    }
+    case 'setParameters': {
+      return {
+        ...state,
+        parameters: action.parameters || state.parameters,
       };
     }
     default:
@@ -33,7 +74,7 @@ const reducer = (state, action) => {
 
 const Provider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log('Provider', state);
+  // console.log('Provider', state);
 
   return (
     <Context.Provider value={{ state, dispatch }}>

@@ -14,7 +14,7 @@ Word.propTypes = {
   word: PropTypes.string.isRequired,
 };
 Word.defaultProps = {
-  word: '...'
+  word: 'canel'
 };
 
 export default Word;
